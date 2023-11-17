@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pdb
+    username: bee
+    password: bee
+    # Connection pool properties
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+  flyway:
+    enabled: false
+  activemq:
+    broker-url: tcp://localhost:61616
+    activemq:
+      user: admin
+      password: admin
+  jpa:
+    hibernate:
+      ddl-auto:  create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+      javax:
+        persistence:
+          schema-generation:
+            scripts:
+              action: none
+              create-target: create.sql
