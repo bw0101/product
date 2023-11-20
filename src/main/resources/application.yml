@@ -26,3 +26,7 @@ spring:
             scripts:
               action: none
               create-target: create.sql
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
