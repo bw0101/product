@@ -5,6 +5,6 @@ import org.springframework.stereotype.Component;
 public class MessageReceiver {
     @JmsListener(destination = "bee.queue")
     public void receiveMessage(String message) {
-        System.out.println("Queue= bee.queue -> Received: <" + message + ">");
+        System.out.println("## Queue= bee.queue -> Received: <" + message + ">");
     }
 }

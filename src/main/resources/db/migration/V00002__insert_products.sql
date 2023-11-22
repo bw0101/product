@@ -1,0 +1,15 @@
+INSERT INTO product (name, value, status) VALUES ('Product 1', 100, 'Available');
+INSERT INTO product (name, value, status) VALUES ('Product 2', 200, 'Available');
+INSERT INTO product (name, value, status) VALUES ('Product 3', 150, 'Unavailable');
+INSERT INTO product (name, value, status) VALUES ('Product 4', 250, 'Available');
+INSERT INTO product (name, value, status) VALUES ('Product 5', 300, 'Unavailable');
+INSERT INTO product (name, value, status) VALUES ('Product 6', 600, 'Pending');
+INSERT INTO product (name, value, status) VALUES ('SRY', 300, 'pending');
+INSERT INTO product (name, value, status) VALUES ('SRY', 300, 'Pending');
+INSERT INTO product (name, value, status) VALUES ('SRY', 301, 'Pending');
+INSERT INTO product (name, value, status) VALUES ('SRY', 302, 'Pending');
+INSERT INTO product (name, value, status) VALUES ('SRY', 303, 'waiting');
+INSERT INTO product (name, value, status) VALUES ('PCZ', 555, 'Pending');
+INSERT INTO product (name, value, status) VALUES ('PCZ', 444, 'Pending');
+INSERT INTO product (name, value, status) VALUES ('PCZ', 666, 'waiting');
+INSERT INTO product (name, value, status) VALUES ('PCZ', 555, 'failed');

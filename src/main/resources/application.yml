@@ -1,3 +1,12 @@
+server:
+  address: 127.0.0.1
+  port: 8088
+logging:
+  level:
+    root: "info"
+    org.springframework.web: "debug"
+  file:
+    name: logging.log
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/pdb
@@ -7,6 +16,16 @@ spring:
     hikari:
       connectionTimeout: 20000
       maximumPoolSize: 5
+  sql:
+    init:
+      platform: postgres
+      schema-locations:
+        - classpath:/db/migration/V00001__create_table_product.sql
+        - classpath:/db/migration/V00001__create_table_customer.sql
+      data-locations:
+        - classpath:/db/migration/V00002__insert_customer.sql
+        - classpath:/db/migration/V00002__insert_products.sql
+      mode: always
   flyway:
     enabled: false
   activemq:
@@ -16,7 +35,7 @@ spring:
       password: admin
   jpa:
     hibernate:
-      ddl-auto:  create
+      ddl-auto:  none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -26,6 +45,8 @@ spring:
             scripts:
               action: none
               create-target: create.sql
+    datasource:
+
   servlet:
     multipart:
       max-file-size: 10MB

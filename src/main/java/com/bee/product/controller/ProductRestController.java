@@ -1,6 +1,7 @@
 package com.bee.product.controller;
 import com.bee.product.model.LargeRequestDTO;
 import com.bee.product.model.Product;
+import com.bee.product.model.ProductFilterDTO;
 import com.bee.product.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -8,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-//import org.springframework.messaging.handler.annotation.support.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -18,12 +18,29 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(value = "/api/v1")
+@RequestMapping(value = "/api/v1/products", produces="application/json")
 public class ProductRestController {
+
     private ProductService service;
-    @GetMapping(value = "/products")
+
+    @GetMapping
     public ResponseEntity<List<Product>> getAllProducts(){
-        return  new ResponseEntity<>(service.listAllProducts(), HttpStatus.OK);
+        return  new ResponseEntity<>(service.listAll(), HttpStatus.OK);
+    }
+
+    /**
+     *  Post request with json example:
+     *  {
+     *     "names": ["SRY", "PCZ"],
+     *     "statuses": ["Pending", "pending", "waiting"]
+     * }
+     * @param filter
+     * @return
+     */
+    @PostMapping("/filter")
+    public ResponseEntity<List<Product>> getProducts(@RequestBody ProductFilterDTO filter) {
+        List<Product> response = service.findProductsByFilter(filter);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/largeRequest")

@@ -10,4 +10,3 @@ public class MessageSender {
         jmsTemplate.convertAndSend("bee.queue", message);
     }
 }
-
