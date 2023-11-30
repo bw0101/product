@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
 
 @AllArgsConstructor
 @RestController
@@ -35,11 +36,14 @@ public class CustomerRestController {
     public Page<Customer> getEntities(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
+
         Page<Customer> response =service.getEntities(page, size);
+
         CacheService cacheService1 = cacheService;
         for (Customer customer : response) {
-            cacheService1.loadIntoCache(customer.firstName, 12L);
+            cacheService1.loadIntoCache(customer.firstName, 42L);
         }
+
         return response;
     }
 
@@ -53,6 +57,11 @@ public class CustomerRestController {
         List<Customer> response = new ArrayList<>();
 
         loadCache();
+
+        IntStream.range(0, 10)          // Generate numbers from 0 to 9
+                .mapToObj(Integer::toString) // Convert each int to String
+                .map(s -> "Number: " + s)    // Prefix each string with "Number: "
+                .forEach(System.out::println); // Print each modified string
 
         for (Customer customer : customers ) {
             String key = customer.firstName;

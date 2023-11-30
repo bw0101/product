@@ -2,6 +2,7 @@ package com.bee.product.controller;
 import com.bee.product.model.LargeRequestDTO;
 import com.bee.product.model.Product;
 import com.bee.product.model.ProductFilterDTO;
+import com.bee.product.service.FileSystemService;
 import com.bee.product.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -23,9 +24,17 @@ public class ProductRestController {
 
     private ProductService service;
 
-    @GetMapping
+    private FileSystemService fileSystemService;
+
+    @GetMapping("/products")
     public ResponseEntity<List<Product>> getAllProducts(){
         return  new ResponseEntity<>(service.listAll(), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/files")
+    public List<String> getFilesInDirectory(@RequestParam String path) {
+        return fileSystemService.listAllFiles(path);
     }
 
     /**
