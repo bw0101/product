@@ -1,4 +1,7 @@
 <<<<<<< docu_branch_of_product_v2
+=======
+<<<<<<< docu_branch_of_product_v2
+>>>>>>> master
 # README
 
 ## Environment 
@@ -33,6 +36,8 @@ The following guides illustrate how to use some features concretely:
 * [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
 
+<<<<<<< docu_branch_of_product_v2
+=======
 =======
 
 # README
@@ -41,4 +46,5 @@ The following guides illustrate how to use some features concretely:
 open a browser
 endpoint:
 http://localhost:8080/api/v1/products
+>>>>>>> master
 >>>>>>> master
