@@ -10,10 +10,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
@@ -51,8 +53,8 @@ public class PatchRestController {
             throw new IllegalArgumentException("Invalid page size or number.");
         //TODO: add sorting
         Pageable paging = PageRequest.of(pageNo, pageSize);
-        return new ResponseEntity<>(service.getProducts(paging), HttpStatus.OK);
-       // return new ResponseEntity<>(pagingFilterService.handlePaginationFilter(filterDto), HttpStatus.OK);
+       // return new ResponseEntity<>(service.getProducts(paging), HttpStatus.OK);
+       return new ResponseEntity<>(pagingFilterService.handlePaginationFilter(filterDto), HttpStatus.OK);
 
         //return ResponseEntity.ok().build();
     }
@@ -166,6 +168,16 @@ public class PatchRestController {
 
         Object result = pagingFilterService.handlePaginationFilter(paginationFilterDto);
         return ResponseEntity.ok(result);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<List<String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        List<String> errors = ex.getBindingResult()
+                .getAllErrors()
+                .stream()
+                .map(ObjectError::getDefaultMessage)
+                .collect(Collectors.toList());
+        return ResponseEntity.badRequest().body(errors);
     }
 
 

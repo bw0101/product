@@ -38,47 +38,39 @@ public class ProductRestController {
      * e.g.:
 
      http://localhost:8088/api/v1/products/endpoint?
-     page=1
+     page=0&pageSize=20&order=desc&attribute=id
 
-     &pageSize=10
-     &sorting[order]=desc
-     &sorting[attribute]=type
-     &filters[site]=asdasd
-     &filters[type]=ESXi
-     &filters[version]=adsa
-     &siteId=123
-
-             /endpoint?page=1&pageSize=10&sorting[order]=desc&sorting[attribute]=type&filters[site]=asdasd&filters[type]=ESXi&filters[version]=adsa&siteId=123
 
      * @param page
      * @param pageSize
-     * @param sorting
-     * @param filters
-     * @param siteId
+     * @param params
      * @return
      */
     @GetMapping("/endpoint")
     public Page<Product> getProductsWithFilters(
-            @RequestParam(defaultValue = "0") Integer page,
-            @RequestParam(defaultValue = "10") Integer pageSize,
-            @RequestParam Map<String, String> sorting,
-            @RequestParam Map<String, String> filters,
-            @RequestParam String siteId)
+            @RequestParam( defaultValue = "0" ) int page,
+            @RequestParam(defaultValue = "10") int pageSize,
+            @RequestParam Map<String, String> params
+    //     ,@RequestParam Map<String, String> filters
+  //       ,@RequestParam (defaultValue = "1134") String site
+    )
     {
-        Pageable pageable = PageRequest.of(page, pageSize,
-                Sort.by(sorting.get("order").equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, sorting.get("attribute")));
-        return service.getProductsFilteredV2(pageable,
-                filters,
-                siteId);
+        Pageable pageable = PageRequest.of(
+                  page
+                , pageSize
+                , Sort.by(params.get("order").equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC
+                , params.get("attribute")
+                ));
+        return service.getProductsFilteredV2(
+                pageable,
+                params
+        );
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts(){
         return  new ResponseEntity<>(service.listAll(), HttpStatus.OK);
     }
-
-
-
 
     @GetMapping
     public Page<Product> getProducts(
@@ -120,8 +112,6 @@ public class ProductRestController {
             @PageableDefault( page = 0, value = 5) Pageable pageable) {
         return service.getProducts(pageable);
     }
-
-
 
 
     @GetMapping("/files")

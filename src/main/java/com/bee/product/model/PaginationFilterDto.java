@@ -48,9 +48,9 @@ public class PaginationFilterDto {
     @Getter
     @Setter
     public static class Sorting {
-        @NotNull
+       // @NotNull
         private String attribute;
-        @NotNull
+        //@NotNull
         private String order;
     }
 

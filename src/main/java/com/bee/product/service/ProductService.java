@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -25,16 +26,21 @@ public class ProductService {
         return repo.findAll(pageable);
     }
 
-    public Page<Product> getProductsFilteredV2(Pageable pageable, Map<String, String> filters, String siteId) {
+    public Page<Product> getProductsFilteredV2(
+                Pageable pageable
+                , Map<String, String> params
+                ) {
 
-        Specification<Product> spec = Specification.where(null);
+      Specification<Product> spec = Specification.where(null);
+        spec = spec.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("name"),"SRY"));
 
-        for (Map.Entry<String, String> entry : filters.entrySet()) {
+       /* for (Map.Entry<String, String> entry : filters.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
             spec = spec.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get(key), value));
         }
-        spec = spec.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("siteId"), siteId));
+
+      ;*/
         return repo.findAll(spec, pageable);
     }
 
@@ -62,6 +68,7 @@ public class ProductService {
         Specification<Product> finalSpec = specs.stream().reduce(Specification::and).orElse(null);
 
         //assert finalSpec != null;
+        //return Collections.emptyList();  // Return an empty list instead of null
         return repo.findAll(finalSpec);
     }
 
