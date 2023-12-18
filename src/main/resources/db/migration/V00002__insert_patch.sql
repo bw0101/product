@@ -1,0 +1,15 @@
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST001', 'SRX',  'SRX100', '1134', 'COMPLETED');
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST002', 'SRX',  'SRX100', '1114', 'COMPLETED');
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST003', 'SRX',  'SRX100', '1341', 'COMPLETED');
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST005', 'SRX',  'SRX100', '1241', 'COMPLETED');
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST006', 'SRX',  'SRX100', '1232', 'COMPLETED');
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST007', 'SRX',  'SRX100', '1235', 'COMPLETED');
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST008', 'SRX',  'SRX100', '1236', 'COMPLETED');
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST009', 'SRX',  'SRX100', '1237', 'COMPLETED');
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST010', 'SRX',  'SRX100', '1238', 'COMPLETED');
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST011', 'SRX',  'SRX100', '1239', 'COMPLETED');
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST012', 'SRX',  'SRX100', '1333', 'COMPLETED');
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST013', 'SRX',  'SRX100', '1334', 'COMPLETED');
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST014', 'SRX',  'SRX100', '1335', 'COMPLETED');
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST015', 'SRX',  'SRX100', '1236', 'COMPLETED');
+INSERT INTO patch( customer, type, version, site, status) VALUES ('CUST016', 'SRX',  'SRX100', '1237', 'COMPLETED');

@@ -22,9 +22,11 @@ spring:
       schema-locations:
         - classpath:/db/migration/V00001__create_table_product.sql
         - classpath:/db/migration/V00001__create_table_customer.sql
+        - classpath:/db/migration/V00001__create_table_patch.sql
       data-locations:
         - classpath:/db/migration/V00002__insert_customer.sql
         - classpath:/db/migration/V00002__insert_products.sql
+        - classpath:/db/migration/V00002__insert_patch.sql
       mode: always
   flyway:
     enabled: false

@@ -16,7 +16,7 @@ public class FileSystemServiceTest {
     private FileSystemService fileSystemService;
 
     private static final String TEST_FILENAME = "sample.txt";
-    private static final String TEST_CONTENT = "Hello, World!";
+    private static final String TEST_CONTENT = "Hello, World in a text file!";
 
     @Test
     public void saveFileTest() throws IOException {
