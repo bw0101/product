@@ -28,9 +28,8 @@ public class ProductRestController {
 
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getAllProducts(){
-        return  new ResponseEntity<>(service.listAll(), HttpStatus.OK);
+        return new ResponseEntity<>(service.listAll(), HttpStatus.OK);
     }
-
 
     @GetMapping("/files")
     public List<String> getFilesInDirectory(@RequestParam String path) {
@@ -39,12 +38,34 @@ public class ProductRestController {
 
     /**
      *  Post request with json example:
-     *  {
-     *     "names": ["SRY", "PCZ"],
-     *     "statuses": ["Pending", "pending", "waiting"]
-     * }
+     {
+     "names": ["SRY", "PCZ"],
+     "statuses": ["Pending", "pending", "waiting"]
+     }
+
+     http://localhost:8088/api/v1/products/filter
+     Media Type: application/json
+
+     {
+     "names": ["SRY", "PCZ"],
+     "statuses": ["Pending", "pending", "waiting"]
+     }
+
      * @param filter
-     * @return
+     * @return ...
+     * [
+     *       {
+     *       "id": 7,
+     *       "name": "SRY",
+     *       "value": 300,
+     *       "status": "pending"
+     *    },
+     *       {
+     *       "id": 8,
+     *       "name": "SRY",
+     *       "value": 300,
+     *       "status": "Pending"
+     *    }, ...
      */
     @PostMapping("/filter")
     public ResponseEntity<List<Product>> getProducts(@RequestBody ProductFilterDTO filter) {

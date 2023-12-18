@@ -1,5 +1,44 @@
+
 # README
 
+
+## ActiveMQ
+Terminal:
+PS C:\Work\Git\product> cd C:\apache-activemq-6.0.0\bin   
+PS C:\apache-activemq-6.0.0\bin> ./activemq start               
+Java Runtime: Oracle Corporation 21.0.1 C:\Java\openjdk-21.0.1
+...
+
+## PostgresSQL in Docker
+Start Docker Desktop
+
+Terminal:
+PS C:\Work\Git\product> java -version                  
+openjdk version "21.0.1" 2023-10-17
+
+PS C:\Work\Git\product> docker-compose up -d                
+[+] Running 14/14
+
+✔ postgres 13 layers [⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]      0B/0B      Pulled 41.1s
+
+✔ f2a11de1a8b0 Download complete 3.7s
+
+✔ a3e3aea10a5c Download complete
+
+...
+
+[+] Building 0.0s (0/0) docker:default
+
+[+] Running 1/1
+
+✔ Container product-postgres-1  Started                                                                                                                                       2.5s
+
+
+
+## Start the App in IntelliJ
+open a browser
+endpoint:
+http://localhost:8080/api/v1/products
 ## Environment 
 * IDE:  IntelliJ
 
